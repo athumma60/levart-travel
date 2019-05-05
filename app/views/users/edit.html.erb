@@ -1,0 +1,45 @@
+<div class="row">
+
+  <div class="col-md-9 text-center">
+    <div class="panel panel-default">
+      <div class="panel-heading">Update User Information</div>
+      <div class="panel-body">
+        <div class="container">
+        NOTE: REMEMBER THAT IF YOU ARE CREATING A NEW USER <br />YOU MUST CHANGE THE EMAIL ADDRESS OF THE NEW USER.
+          <%= form_for @user, :method => :PATCH do |f| %>
+            
+
+            <div class="form-group">
+              <%= f.text_field :fullname, autofocus: true, :placeholder => "Full Name", :class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.email_field :email, :placeholder => "Email", :class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.text_field :phone_number, :placeholder => "Phone Number", :class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.text_area :description, rows: 5, cols: 25, :placeholder => "Description", :class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.password_field :password, autocomplete: "off", :placeholder => "New Password (Leave blank if you don't want to change it)", :class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => "Confirm Password", :class => 'form-control' %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Save", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

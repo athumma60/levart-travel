@@ -1,0 +1,87 @@
+ <!-- Displays the layout for users_search -->
+  <div class="row">  
+      <div class="col-md-3">
+		<ul class="sidebar-list">
+		  <li class="sidebar-item"><%= link_to "Admin Panel Overview", admin_panel_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "All Users", admin_panel_users_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "All Reservations", admin_panel_bookings_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "Search For Users", search_for_users_path, class: "sidebar-link active" %></li>
+		  <li class="sidebar-item"><%= link_to "Search for Reservations", search_for_bookings_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "Problem Tickets",  problem_tickets_path, class: "sidebar-link" %></li>
+		</ul>
+	  </div>
+	  <div class="col-md-9">
+	    <div class="panel panel-default">
+	      <div class="panel-heading">
+
+	      </div>
+	      <div class="panel-body">
+			
+			<div class="col-md-12">
+
+				  <%= search_form_for @search, url: search_for_users_path do |f| %>
+			    
+				    <div class="row">
+					  <div class="col-md-4">
+					  <!-- Display a label for fullname and email -->
+						<%= f.label :fullname_or_email_cont %>:
+					  </div>
+					  <div class="col-md-3">
+					  <!-- Display a search field for fullname or email -->
+						<%= f.search_field :fullname_or_email_cont %>
+					  </div>
+					  <div class="col-md-3">
+					  <!-- Display a save button -->
+						<%= f.submit "Search", class: "btn btn-primary" %>
+					  </div>
+				    </div>
+
+			      <% end %>
+
+			      <hr>
+			    </div>
+
+				 
+				<% @arrResult.each do |user| %>
+
+					  <div class="row">
+						<div class="col-md-2">
+						<!-- Display users image -->
+						  <%= image_tag avatar_url(user), class: "img-circle avatar-medium" %>
+						</div>
+						<div class="col-md-7">
+						<!-- Display users fullname -->
+						  <h4>Name: <%= user.fullname %></h4>
+						  <!-- Display  -->
+						  <h4>Email: <%= user.email %></h4>
+						  <!-- Display user id -->
+						  <h4>Id Number: <%= user.id %></h4>
+						  <!-- Display if user is an admin -->
+						  <% if(user.is_admin? == true) %>
+							<h4>Admin</h4>
+						  <% else %>
+						  	<h4>Normal User</h4>
+						  <% end %>
+						</div>
+						<div class="col-md-3">
+						<!-- Display view profile button -->
+						 <div class="row-space-2">
+						  <%= link_to "View Profile", user_path(user), class: 'btn btn-primary wide' %>	
+						 </div>
+						  <!-- Display delete user button -->
+						 <div class="row-space-2">
+						  <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: "Are you Sure?"}, class: 'btn btn-primary wide' %>
+						 </div>	
+						</div>
+					  </div>
+						
+					  <hr>
+				<% end %>
+
+	      </div>
+	
+		</div>
+	  </div>	
+
+  </div>
+

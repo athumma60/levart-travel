@@ -1,0 +1,30 @@
+<!-- Displays the view for the application layout -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Levart</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+    <script src="https://use.fontawesome.com/3c349d9b38.js"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <%= render 'shared/navbar' %>
+
+    <%= render 'shared/message' %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+
+  </body>
+</html>
+
+
+

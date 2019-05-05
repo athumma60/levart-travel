@@ -1,0 +1,52 @@
+<!-- Displays the layout for problem_tickets -->
+<div class="row">
+  <div class="col-md-3">
+	<ul class="sidebar-list">
+	  <li class="sidebar-item"><%= link_to "Admin Panel Overview", admin_panel_path, class: "sidebar-link" %></li>
+	  <li class="sidebar-item"><%= link_to "All Users", admin_panel_users_path, class: "sidebar-link" %></li>
+	  <li class="sidebar-item"><%= link_to "All Reservations", admin_panel_bookings_path, class: "sidebar-link" %></li>
+	  <li class="sidebar-item"><%= link_to "Search For Users", search_for_users_path, class: "sidebar-link" %></li>
+	  <li class="sidebar-item"><%= link_to "Search for Reservations", search_for_bookings_path, class: "sidebar-link" %></li>
+	  <li class="sidebar-item"><%= link_to "Problem Tickets",  problem_tickets_path, class: "sidebar-link active" %></li>
+	</ul>
+  </div>
+  <div class="col-md-9">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+			Problem Tickets
+		  </div>
+		  <div class="panel-body">
+
+			<% @conversations.each do |conversation| %>
+			  <% other = conversation.sender == current_user ? conversation.recipient : conversation.sender %>
+
+			  <%= link_to conversation_messages_path(conversation) do %>
+
+				  <div class="row conversation">
+					<div class="col-md-2">
+					<!-- Display the other users image -->
+					  <%= image_tag avatar_url(other), class: "img-circle avatar-medium" %>
+					</div>
+					<div class="col-md-2">
+					<!-- Display other users fullname -->
+					  <%= other.fullname %><br>
+					  <!-- Display the time of last message -->
+					  <%= conversation.messages.last.message_time %>
+					</div>
+					<div class="col-md-8">
+					<!-- Display the content of the last message -->
+					  <%= conversation.messages.last.content %>
+					</div>
+				  </div>
+
+			  <% end %>
+		    <% end %>
+				
+		</div>
+
+			
+
+		  </div>
+		</div>
+	  </div>
+  </div>

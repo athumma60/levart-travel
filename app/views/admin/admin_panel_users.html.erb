@@ -1,0 +1,71 @@
+<!-- Displays the layout for admin_panel_users -->
+	<div class="row">
+	  <div class="col-md-3">
+		<ul class="sidebar-list">
+		  <li class="sidebar-item"><%= link_to "Admin Panel Overview", admin_panel_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "All Users", admin_panel_users_path, class: "sidebar-link active" %></li>
+		  <li class="sidebar-item"><%= link_to "All Reservations", admin_panel_bookings_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "Search For Users", search_for_users_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "Search for Reservations", search_for_bookings_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "Problem Tickets",  problem_tickets_path, class: "sidebar-link" %></li>
+		</ul>
+	  </div>
+	  <div class="col-md-9">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+			All Users
+			<div class="pull-right">
+			  <%= link_to "Create New User", create_user_path, class: 'btn btn-primary' %>
+		    </div>
+		  </div>
+		  
+		  <div class="panel-body">
+		  	<div class="col-md-12">
+
+			<% @users.each do |user| %>
+
+			  <div class="row">
+					<div class="col-md-2">
+					<!-- Display user image -->
+					  <%= image_tag avatar_url(user), class: "img-circle avatar-medium" %>
+					</div>
+					<br>
+					<div class="col-md-5">
+					<!-- Display user full name -->
+					  <h4>Name: <%= user.fullname %></h4>
+					  <!-- Display user email -->
+					  <h4>Email: <%= user.email %></h4>
+					  <!-- Display user id -->
+					  <h4>Id Number: <%= user.id %></h4>
+					  <% if(user.is_admin? == true) %>
+						<h4>Admin</h4>
+					  <% else %>
+						<h4>Normal User</h4>
+					  <% end %>
+					</div>
+					<br>
+					<div class="col-md-4">
+					<!-- Display a button to user profile -->
+					 <div class="row-space-2">
+					  <%= link_to "View Profile", user_path(user), class: 'btn btn-primary wide' %>
+					 </div>
+					
+					<!-- Display button to delete user -->
+					 <div class="row-space-2">
+					  <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: "Are you Sure?"}, class: 'btn btn-primary wide' %>
+					 </div>
+
+					<!-- Display button for updating user info -->
+					 <div class="row-space-2">
+					  <%= link_to "Update User Information", edit_user_path(user), class: 'btn btn-primary wide' %>
+					 </div>
+				    </div>
+			  </div>
+
+			  <hr>
+			<% end %>
+
+		  </div>
+		</div>
+	  </div>
+	</div>

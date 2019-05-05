@@ -1,0 +1,48 @@
+<!-- Displays the layout for admin_panel -->
+<div class="row">
+  <div class="col-md-3">
+	<ul class="sidebar-list">
+	  <li class="sidebar-item"><%= link_to "Admin Panel Overview", admin_panel_path, class: "sidebar-link active" %></li>
+	  <li class="sidebar-item"><%= link_to "All Users", admin_panel_users_path, class: "sidebar-link" %></li>
+	  <li class="sidebar-item"><%= link_to "All Reservations", admin_panel_bookings_path, class: "sidebar-link" %></li>
+	  <li class="sidebar-item"><%= link_to "Search For Users", search_for_users_path, class: "sidebar-link" %></li>
+	  <li class="sidebar-item"><%= link_to "Search for Reservations", search_for_bookings_path, class: "sidebar-link" %></li>
+	  <li class="sidebar-item"><%= link_to "Problem Tickets",  problem_tickets_path, class: "sidebar-link" %></li>
+	</ul>
+  </div>
+  <div class="col-md-9">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+			General Information
+		  </div>
+		  <div class="panel-body">
+			
+			<div class="row">
+			  <div class="col-md-2">
+				<h4><i class="fa fa-user"></i> User Information</h4>
+			  </div>
+			  <!-- Display User count -->
+			  <div class="col-md-7">
+				<h4>Total Users: <%= @users.count %></h4>
+				<h4></h4>
+			  </div>
+			</div>
+
+			<hr>
+
+			<div class="row">
+			  <div class="col-md-2">
+				<h4><i class="fa fa-book"></i> Reservation Information</h4>
+			  </div>
+			  <!-- Display Reservation count -->
+			  <div class="col-md-7">
+				<h4>Total Reservations: <%= @reservations.count %></h4>
+			  </div>
+			</div>
+
+
+
+		  </div>
+		</div>
+	  </div>
+  </div>

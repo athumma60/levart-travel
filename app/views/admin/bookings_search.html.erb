@@ -1,0 +1,88 @@
+<!-- Displays the layout for bookings_search -->
+<div class="row">
+	  <div class="col-md-3">
+		<ul class="sidebar-list">
+		  <li class="sidebar-item"><%= link_to "Admin Panel Overview", admin_panel_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "All Users", admin_panel_users_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "All Reservations", admin_panel_bookings_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "Search For Users", search_for_users_path, class: "sidebar-link" %></li>
+		  <li class="sidebar-item"><%= link_to "Search for Reservations", search_for_bookings_path, class: "sidebar-link active" %></li>
+		  <li class="sidebar-item"><%= link_to "Problem Tickets",  problem_tickets_path, class: "sidebar-link" %></li>
+		</ul>
+	  </div>
+	  <div class="col-md-9">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+
+		  </div>
+		  <div class="panel-body">
+			
+			<div class="col-md-12">
+
+		      <%= search_form_for @search, url: search_for_bookings_path do |f| %>
+	    
+		        <div class="row">
+		          <div class="col-md-6">
+		          <!-- Display a label -->
+					<%= f.label "Reservation ID, Reserver's ID, or Room ID contains" %>:
+		          </div>
+			      <div class="col-md-3">
+			      <!-- Display a search field for id, room id, or user id  -->	        
+					<%= f.search_field :id_or_room_id_or_user_id_cont %> 					
+				  </div>
+				  <div class="col-md-3">
+					<%= f.submit "Search", class: "btn btn-primary" %>
+				  </div>
+				</div>
+
+	          <% end %>
+
+	          <hr>
+	        </div>
+
+		 
+		    <% @arrResult.each do |reservation| %>
+
+			  <div class="row">
+			    <div class="col-md-12">
+			    <!-- Display reservation start date -->
+				  <h4>Start Date: <%= reservation.start_date %></h4>
+				  <!-- Display reservation end date -->
+				  <h4>End Date: <%= reservation.end_date %></h4>
+				  <!-- Display reservation total -->
+				  <h4>Total: $<%= reservation.total  %></h4>
+			    </div>
+			  </div>
+
+		    <% end %> 
+
+		  </div>
+		</div>
+	  </div>
+
+</div>
+
+
+
+<script>
+  $(function() {
+  	$("#start_date").datepicker({
+  		dateFormat: 'dd-mm-yy',
+  		minDate: null,
+  		maxDate: '3m',
+  		onSelect: function(selected) {
+  			$('#end_date').datepicker("option", "minDate", selected);
+  			$('#end_date').attr('disabled', false);
+  		}
+  	});
+
+  	$("#end_date").datepicker({
+  		dateFormat: 'dd-mm-yy',
+  		minDate: null,
+  		maxDate: '3m',
+  		onSelect: function(selected) {
+  			$('#start_date').datepicker("option", "maxDate", selected);
+  		}
+  	});
+  })
+</script>

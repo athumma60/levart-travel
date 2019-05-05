@@ -1,0 +1,36 @@
+<!-- Displays the layout for create_user -->
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 text-center">
+
+    <h2>Sign up</h2>
+
+    <%= form_for User.new, url: create_user_path do |f| %>
+      <%= render 'shared/devisemes' %>
+
+      <div class="form-group">
+      <!-- Display a text field for fullname -->
+        <%= f.text_field :fullname, :class => 'form-control', :placeholder => 'Full Name', autofocus: true %>
+      </div>
+
+      <div class="form-group">
+      <!-- Display display a text field for email -->
+        <%= f.email_field :email, :class => 'form-control', :placeholder => 'Email' %>
+      </div>
+
+      <div class="form-group">
+        <% if @validatable %>
+        <!-- Determine is password is valid  -->
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <!-- Display a field for password -->
+        <%= f.password_field :password, :class => 'form-control', :placeholder => 'Password', autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+      <!-- Display a button for save -->
+        <%= f.submit "Sign up", :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

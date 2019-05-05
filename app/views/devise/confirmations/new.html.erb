@@ -1,0 +1,20 @@
+<!-- Displays the view for new convfirmations -->
+<h2>Resend confirmation instructions</h2>
+
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+  <!-- Display label email -->
+    <%= f.label :email %><br />
+    <!-- Display a field for email -->
+    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+  </div>
+
+  <div class="actions">
+  <!-- Display a submit button -->
+    <%= f.submit "Resend confirmation instructions" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
